@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our 5 Months Journey</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="lockScreen">
+        <div class="quiz-box">
+            <h2>🔒 Buka Kunci Dulu</h2>
+            <p id="stageDesc">Stage 1/3: Hafalkan urutan warnanya</p>
+            <div class="stage active" id="stage1">
+                <div class="color-grid">
+                    <button class="color-btn" id="c1"></button>
+                    <button class="color-btn" id="c2"></button>
+                    <button class="color-btn" id="c3"></button>
+                </div>
+                <button class="quiz-btn" id="startSeq">Mulai</button>
+            </div>
+            <div class="stage" id="stage2">
+                <p>Klik 5 target secepatnya!</p>
+                <p>Skor: <span id="clickScore">0</span>/5</p>
+                <div id="clickArea"></div>
+            </div>
+            <div class="stage" id="stage3">
+                <p>Tebak angka 1-15. Kamu punya 10 nyawa!</p>
+                <div class="guess-box">
+                    <input type="number" id="guessInput" min="1" max="15" placeholder="?">
+                    <button class="quiz-btn" id="guessBtn">Tebak</button>
+                    <p id="guessHint"></p>
+                    <p id="lives">Nyawa: 10</p>
+                </div>
+            </div>
+            <p class="error-text" id="error"></p>
+        </div>
+    </div>
+
+    <nav>
+        <div class="menu-container">
+            <button class="menu-btn active" onclick="switchPage('home')">Halaman Utama</button>
+            <button class="menu-btn" onclick="switchPage('gallery')">Gallery</button>
+            <button class="menu-btn" onclick="switchPage('game')">Play Game</button>
+        </div>
+    </nav>
+    <div class="main-wrapper">
+        <div id="home" class="page active">
+            <div class="wish-card">
+                <span class="chapter">Chapter 06</span>
+                <h1>Happy Mensiversary</h1>
+                <div class="months">6 Months Together with you 🤍</div>
+                <div class="track-bar"><div class="track-fill"></div></div>
+                <p>Selama 6 bulan ini, kita melewati banyak hal duka maupun suka. Kamu membuat hari ku penuh tawa (ya walaupun kesel dikit sih 😹) well, makasih udah bertahan sampai saat ini. Maafin yah kalo aku sering bikin kamu bete atau kewalahan sama aku yang moodyan ini 😹 cayank Noa banyak 🤍.</p>
+                <span class="sign">With all my love, Adams 🤍</span>
+            </div>
+        </div>
+        <div id="gallery" class="page"><div class="collage-container">
+            <div class="polaroid p-landscape p-top"><div class="tape"></div><img src="kisah1land.jpg"><div class="caption">sweet escape</div></div>
+            <div class="polaroid p-landscape p-bottom"><div class="tape"></div><img src="kisah3land.jpg"><div class="caption">laughter shared</div></div>
+            <div class="polaroid p-icon"><div class="tape"></div><img src="kisah2icon.jpg"><div class="caption">us 🤍</div></div>
+        </div></div>
+        <div id="game" class="page">
+            <div class="game-title">Memory Spaces</div>
+            <div class="game-desc">Temukan dua objek yang selaras</div>
+            <div class="memory-grid" id="grid"></div>
+            <div class="win-message" id="winBox">
+                <h3 style="color: #2E2E2E; margin-bottom: 10px; font-weight: 400;">Selesai ✨</h3>
+                <p style="font-size: 0.85rem; color: #C8AD7F; margin-bottom: 20px;">Kamu berhasil menyatukan kembali semua potongan ingatan.</p>
+                <button class="menu-btn" onclick="resetGame()" style="font-size: 0.8rem; background: #E9C4D2; color: #fff; padding: 5px 15px;">Main Lagi</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

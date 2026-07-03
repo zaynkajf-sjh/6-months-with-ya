@@ -1,0 +1,92 @@
+/* CSS RESET & CORE */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; user-select: none; }
+body, html { width: 100%; height: 100%; overflow: hidden; color: #2E2E2E;
+    background: radial-gradient(1200px 800px at 20% 10%, #E9C4D2 0%, transparent 60%),
+                radial-gradient(1000px 700px at 80% 90%, #D8E7F3 0%, transparent 60%),
+                #FEFCF8; }
+
+/* ========== LOCK SCREEN GAME ========== */
+#lockScreen {
+    position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center;
+    background: rgba(254, 252, 248, 0.95); backdrop-filter: blur(20px);
+    transition: opacity.5s ease, visibility.5s ease;
+}
+#lockScreen.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.quiz-box {
+    width: 90%; max-width: 420px; background: #FEFCF8; border: 1.5px solid #C8AD7F;
+    border-radius: 20px; padding: 28px; text-align: center;
+    box-shadow: 0 20px 50px rgba(200,173,127,0.2);
+}
+.quiz-box h2 { font-size: 1.2rem; font-weight: 400; margin-bottom: 8px; }
+.quiz-box p { font-size: 0.85rem; color: #C8AD7F; margin-bottom: 16px; }
+.stage { display: none; }
+.stage.active { display: block; }
+.color-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+.color-btn { width: 100%; aspect-ratio: 1; border: none; border-radius: 12px; cursor: pointer; transition:.2s; opacity:.6; }
+.color-btn.active { opacity: 1; transform: scale(.95); box-shadow: 0 0 20px #fff inset; }
+#c1{background:#E9C4D2} #c2{background:#D8E7F3} #c3{background:#C8AD7F}
+#clickArea { width: 100%; height: 120px; background: #D8E7F3; border-radius: 12px; position: relative; overflow: hidden; cursor: crosshair; }
+.target { position: absolute; width: 40px; height: 40px; background: #E9C4D2; border-radius: 50%; }
+.guess-box input { width: 100%; padding: 12px; border: 1.5px solid #D8E7F3; border-radius: 12px; text-align: center; font-size: 1.1rem; }
+.guess-box input:focus { outline: none; border-color: #E9C4D2; }
+#lives { font-size: 0.8rem; color: #C8AD7F; margin-top: 8px; }
+.quiz-btn { margin-top: 18px; width: 100%; padding: 12px; border: none; border-radius: 12px; background: #E9C4D2; color: #fff; font-size: 0.95rem; cursor: pointer; }
+.quiz-btn:disabled { background: #ccc; cursor: not-allowed; }
+.error-text { font-size: 0.8rem; color: #c0392b; margin-top: 8px; min-height: 18px; }
+
+/* NAV */
+nav {
+    position: fixed; top: 0; left: 0; width: 100%; height: 70px; display: flex; justify-content: center; align-items: center;
+    background: linear-gradient(90deg, rgba(233,196,210,0.6), rgba(254,252,248,0.6), rgba(216,231,243,0.6));
+    backdrop-filter: blur(20px); z-index: 100; border-bottom: 1px solid #C8AD7F;
+}
+.menu-container { display: flex; gap: 25px; }
+.menu-btn { padding: 8px 20px; border: none; background: transparent; font-size: 0.95rem; font-weight: 500; color: #2E2E2E; cursor: pointer; transition: all 0.4s ease; border-radius: 20px; }
+.menu-btn.active,.menu-btn:hover { color: #fff; background: #C8AD7F; }
+
+/* PAGES */
+.main-wrapper { width: 100%; height: 100%; padding-top: 70px; display: flex; }
+.page { display: none; width: 100%; height: calc(100vh - 70px); padding: 20px; animation: fadeIn 0.8s forwards; position: relative; }
+.page.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ========== HALAMAN 1: CARD UCAPAN - BARU ========== */
+.wish-card {
+    width: 90%; max-width: 380px; background: rgba(254,252,248,0.8);
+    backdrop-filter: blur(15px); border: 1.5px solid #E9C4D2;
+    border-radius: 24px; padding: 40px 30px; text-align: center;
+    box-shadow: 0 15px 40px rgba(233,196,210,0.2);
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes popIn { from { transform: scale(.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.wish-card.chapter { font-size: 0.7rem; letter-spacing: 2px; color: #C8AD7F; text-transform: uppercase; }
+.wish-card h1 { font-size: 2.2rem; font-weight: 400; color: #2E2E2E; margin: 10px 0 5px; }
+.wish-card.months { font-size: 1rem; color: #E9C4D2; font-weight: 500; margin-bottom: 20px; }
+.wish-card p { font-size: 0.9rem; color: #2E2E2E; line-height: 1.6; margin-bottom: 20px; }
+.track-bar { width: 100%; height: 6px; background: #D8E7F3; border-radius: 3px; margin: 15px 0; overflow: hidden; }
+.track-fill { width: 100%; height: 100%; background: linear-gradient(90deg, #E9C4D2, #D8E7F3); border-radius: 3px; animation: fill 1.5s ease; }
+@keyframes fill { from { width: 0; } to { width: 100%; } }
+.wish-card.sign { font-size: 0.8rem; color: #C8AD7F; font-style: italic; }
+
+/* Confetti */
+.confetti { position: fixed; width: 10px; height: 10px; background: #E9C4D2; opacity: 0; z-index: 50; }
+@keyframes confettiFall { 0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+
+/* GALLERY */
+.collage-container{position:relative;width:100%;max-width:600px;height:85%;display:flex;align-items:center;justify-content:center}
+.polaroid{background:#FEFCF8;padding:10px 10px 25px 10px;position:absolute;border:1.5px solid #C8AD7F;transition:.3s}
+.polaroid img{width:100%;height:100%;object-fit:cover}
+.p-landscape{width:280px;height:190px;left:20px}.p-icon{width:110px;height:110px;right:40px;top:50%;transform:translateY(-50%) rotate(3deg);z-index:5}
+.p-top{top:15%;transform:rotate(-3deg)}.p-bottom{bottom:15%;transform:rotate(2deg)}
+.tape{position:absolute;width:70px;height:20px;background:rgba(216,231,243,.7);top:-10px;left:50%;transform:translateX(-50%) rotate(-2deg)}
+.caption { position: absolute; bottom: 5px; left: 0; width: 100%; text-align: center; font-family: 'Courier New', Courier, monospace; font-size: 0.75rem; color: #C8AD7F; }
+
+/* MEMORY GAME */
+.game-title { font-size: 1.4rem; font-weight: 400; color: #2E2E2E; margin-bottom: 5px; letter-spacing: 1px; }
+.game-desc { font-size: 0.85rem; color: #C8AD7F; margin-bottom: 25px; }
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%;max-width:320px}
+.card{aspect-ratio:1;background:#FEFCF8;border-radius:12px;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform.5s;border:1px solid #C8AD7F}
+.card.flipped{transform:rotateY(180deg)}
+.card-front,.card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border-radius:12px}
+.card-back{background:linear-gradient(135deg,#E9C4D2,#D8E7F3)}.card-front{background:#FEFCF8;transform:rotateY(180deg);font-size:1.8rem}
+.win-message { display: none; position: absolute; background: rgba(254, 252, 248, 0.98); padding: 30px; border-radius: 25px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.05); animation: fadeIn 0.4s ease forwards; border: 1.5px solid #E9C4D2; z-index: 30; max-width: 300px; }
